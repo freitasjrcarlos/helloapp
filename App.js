@@ -7,7 +7,6 @@ import ReduxThunk from 'redux-thunk';
 import Reducers from './src/Reducers';
 
 import Preload from './src/Preload';
-import Home from './src/Home';
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
@@ -15,9 +14,6 @@ let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 const Navegador = createStackNavigator({
   Preload: {
     screen: Preload
-  },
-  Home: {
-    screen: Home
   }
 });
 
@@ -27,7 +23,7 @@ export default class App extends Component {
   render(){
     return(
       <Provider store={store} >
-        <Navegador />
+        <AppContainer />
       </Provider>
     );
   }

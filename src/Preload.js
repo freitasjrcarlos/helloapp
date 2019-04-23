@@ -17,7 +17,7 @@ export class Preload extends Component {
   render() {
     return(
       <View style={StyleSheet.container}>
-        <Tex>Carregando</Tex>
+        <Text>Carregando...{this.props.status}</Text>
       </View>
     );
   }
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-
+    status: state.auth.status
   };
 }
 
-const PreloadConnect = connect(mapStateToPros, { checkLogin })(Preload);
+const PreloadConnect = connect(mapStateToProps, { checkLogin })(Preload);
 export default PreloadConnect;
