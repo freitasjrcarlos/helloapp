@@ -56,4 +56,4 @@ buck-out/
 *.jsbundle
 
 #Demais arquivos
-FirebaseConnection.js
+FirebaseCon.js
