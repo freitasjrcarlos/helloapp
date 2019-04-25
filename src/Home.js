@@ -22,13 +22,13 @@ export class Home extends Component {
   }
 
   signupButton() {
-
+    this.props.navigation.navigate('SignUp');
   }
 
   render() {
     return(
       <View style={styles.container}>
-        <Text atyle={styles.h1}>HelloApp</Text>
+        <Text style={styles.h1}>HelloApp</Text>
         <View style={styles.buttonArea}> 
           <Button onPress={this.signinButton} title="Login" />
           <Button onPress={this.signupButton} title="Cadastrar" />
@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: 30,
+    marginBottom: 50,
   },
   buttonArea: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-around',
-    marginTop: 50
   }
 });
 
