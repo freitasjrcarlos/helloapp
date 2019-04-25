@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { checkLogin } from './actions/AuthActions';
 
-export class Preload extends Component {
+export class Home extends Component {
 
   static navigationOptions = {
     title: '',
@@ -13,13 +13,12 @@ export class Preload extends Component {
     super(props);
     this.state = {};
 
-    this.props.checkLogin();
   }
 
   render() {
     return(
       <View style={StyleSheet.container}>
-        <Text>Carregando...{this.props.status}</Text>
+        <Text>Página Home{this.props.status}</Text>
       </View>
     );
   }
@@ -38,5 +37,5 @@ const mapStateToProps = (state) => {
   };
 }
 
-const PreloadConnect = connect(mapStateToProps, { checkLogin })(Preload);
-export default PreloadConnect;
+const HomeConnect = connect(mapStateToProps, { checkLogin })(Home);
+export default HomeConnect;
