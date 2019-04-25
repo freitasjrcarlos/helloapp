@@ -19,7 +19,7 @@ export class Preload extends Component {
   }
 
   directPages(){
-    
+
     switch(this.props.status){
       case 1:
         this.props.navigation.dispatch(StackActions.reset({
@@ -51,7 +51,7 @@ export class Preload extends Component {
 
   render() {
     return(
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         <Text>Carregando...{this.props.status}</Text>
       </View>
     );

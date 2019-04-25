@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { checkLogin } from './actions/AuthActions';
 
@@ -13,12 +13,26 @@ export class Home extends Component {
     super(props);
     this.state = {};
 
+    this.signinButton = this.signinButton.bind(this);
+    this.signupButton = this.signupButton.bind(this);
+  }
+
+  signinButton(){
+
+  }
+
+  signupButton() {
+
   }
 
   render() {
     return(
-      <View style={StyleSheet.container}>
-        <Text>Página Home{this.props.status}</Text>
+      <View style={styles.container}>
+        <Text atyle={styles.h1}>HelloApp</Text>
+        <View style={styles.buttonArea}> 
+          <Button onPress={this.signinButton} title="Login" />
+          <Button onPress={this.signupButton} title="Cadastrar" />
+        </View>
       </View>
     );
   }
@@ -27,7 +41,18 @@ export class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  h1: {
+    fontSize: 30,
+  },
+  buttonArea: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
+    marginTop: 50
   }
 });
 
