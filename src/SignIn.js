@@ -20,6 +20,7 @@ export class SignIn extends Component {
       <View style={styles.container}>
 
         <Text> Usuário logado: {this.props.uid} </Text>
+        <Text> Status de login: {this.props.status} </Text>
 
         <Text style={styles.label}>Email:</Text>
         <TextInput style={styles.input} value={this.props.email} onChangeText={this.props.changeEmail} />
@@ -57,7 +58,8 @@ const mapStateToProps = (state) => {
   return {
     uid: state.auth.uid,
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    status: state.auth.status
   };
 }
 
