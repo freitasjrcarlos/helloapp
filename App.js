@@ -42,4 +42,5 @@ export default class App extends Component {
 }
 
 
-//export default AppContainer;
+//Remover para habilitar warnings
+console.disableYellowBox = true;
