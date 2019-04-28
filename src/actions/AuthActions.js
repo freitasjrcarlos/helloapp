@@ -1,24 +1,28 @@
 import firebase from '../FirebaseCon';
 
+
+//CheckLogin
 export const checkLogin = ()=>{
   return (dispatch)=> {
-    let user = firebase.auth().currentUser;
 
-    if(user){
-      dispatch({
-        type: 'changeStatus',
-        payload: {
-          status: 1
-        }
-      });
-    }else {
-      dispatch({
-        type: 'changeStatus',
-        payload: {
-          status: 2
-        }
-      });
-    }
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user){
+        dispatch({
+          type: 'changeUid',
+          payload: {
+            uid: user.uid
+          }
+        });
+      }else {
+        dispatch({
+          type: 'changeStatus',
+          payload: {
+            status: 2
+          }
+        });
+      }
+    });
+
   }
 };
 
