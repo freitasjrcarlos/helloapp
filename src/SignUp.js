@@ -13,7 +13,12 @@ export class SignUp extends Component {
     this.state = {};
   }
 
- 
+ //Direcionar para screen Conversas
+ componentDidUpdate() {
+  if(this.props.status == 1){
+    this.props.navigation.navigate('Conversas');
+  }
+}
 
   render() {
     return(
@@ -58,7 +63,8 @@ const mapStateToProps = (state) => {
   return {
     name: state.auth.name,
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    status: state.auth.status
   };
 }
 

@@ -13,6 +13,7 @@ export class SignIn extends Component {
     this.state = {};
   }
 
+  //Direcionar para screen Conversas
   componentDidUpdate() {
     if(this.props.status == 1){
       this.props.navigation.navigate('Conversas');
