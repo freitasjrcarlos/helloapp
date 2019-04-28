@@ -29,7 +29,7 @@ const AuthReducer = (state = initialState, action) => {
 
   //Action Uid
   if(action.type == 'changeUid'){
-    return {...state, uid:action.payload.uid};
+    return {...state, status:1, uid:action.payload.uid};
   }
 
   return state;
