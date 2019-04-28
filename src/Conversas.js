@@ -4,7 +4,8 @@ import { createBottomTabNavigator, createAppContainer} from 'react-navigation';
 
 import ConversasList from './ConversasList';
 import ContatoList from './ContatoList';
-import Config from './Config'
+import Config from './Config';
+
 
 const ConversasNavigator = createBottomTabNavigator({
   ConversasList: {
@@ -17,6 +18,7 @@ const ConversasNavigator = createBottomTabNavigator({
     screen: Config
   }
 });
+
 
 const AppContainer = createAppContainer(ConversasNavigator);
 
