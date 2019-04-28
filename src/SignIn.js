@@ -13,14 +13,15 @@ export class SignIn extends Component {
     this.state = {};
   }
 
- 
+  componentDidUpdate() {
+    if(this.props.status == 1){
+      this.props.navigation.navigate('Conversas');
+    }
+  }
 
   render() {
     return(
       <View style={styles.container}>
-
-        <Text> Usuário logado: {this.props.uid} </Text>
-        <Text> Status de login: {this.props.status} </Text>
 
         <Text style={styles.label}>Email:</Text>
         <TextInput style={styles.input} value={this.props.email} onChangeText={this.props.changeEmail} />
