@@ -19,6 +19,8 @@ export class SignIn extends Component {
     return(
       <View style={styles.container}>
 
+        <Text> Usuário logado: {this.props.uid} </Text>
+
         <Text style={styles.label}>Email:</Text>
         <TextInput style={styles.input} value={this.props.email} onChangeText={this.props.changeEmail} />
 
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
 //Puxando do AuthReducer
 const mapStateToProps = (state) => {
   return {
+    uid: state.auth.uid,
     email: state.auth.email,
     password: state.auth.password
   };
