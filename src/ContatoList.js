@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 export class ContatoList extends Component {
@@ -18,7 +18,12 @@ export class ContatoList extends Component {
   render() {
     return(
       <View style={StyleSheet.container}>
-        <Text>Página Contato</Text>
+        <FlatList
+          data={this.props.contacts}
+          renderItem={()=> {
+            return <Text>...</Text>
+          }}
+        />
       </View>
     );
   }
@@ -33,8 +38,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    status: state.auth.status,
-    uid: state.auth.uid
+    uid: state.auth.uid,
+    contacts: state.chat.contacts
   };
 }
 
