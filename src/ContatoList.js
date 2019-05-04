@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { getContactList } from './actions/ChatActions';
 
 export class ContatoList extends Component {
 
@@ -13,6 +14,8 @@ export class ContatoList extends Component {
     super(props);
     this.state = {};
 
+    this.props.getContactList();
+
   }
 
   render() {
@@ -20,9 +23,11 @@ export class ContatoList extends Component {
       <View style={StyleSheet.container}>
         <FlatList
           data={this.props.contacts}
-          renderItem={()=> {
-            return <Text>...</Text>
-          }}
+          renderItem={({item})=> 
+          <View> 
+            <Text>-> {item.name}</Text>
+          </View>
+          }
         />
       </View>
     );
@@ -43,5 +48,5 @@ const mapStateToProps = (state) => {
   };
 }
 
-const ContatoListConnect = connect(mapStateToProps, {  })(ContatoList);
+const ContatoListConnect = connect(mapStateToProps, { getContactList })(ContatoList);
 export default ContatoListConnect;
