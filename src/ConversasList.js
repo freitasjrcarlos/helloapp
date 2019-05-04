@@ -7,7 +7,6 @@ export class ConversasList extends Component {
   static navigationOptions = {
     title: '',
     tabBarLabel: 'Conversas',
-    header: 'Conversas',
   }
   constructor(props){
     super(props);

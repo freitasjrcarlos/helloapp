@@ -1,6 +1,18 @@
 import firebase from '../FirebaseCon';
 
 
+//SignOut
+export const signOut = ()=> {
+  firebase.auth().signOut();
+
+  return{
+    type: 'changeStatus',
+    payload: {
+      status:2
+    }
+  };
+};
+
 //CheckLogin
 export const checkLogin = ()=>{
   return (dispatch)=> {

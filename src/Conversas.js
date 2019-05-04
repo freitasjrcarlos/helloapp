@@ -9,14 +9,14 @@ import Config from './Config';
 
 const ConversasNavigator = createBottomTabNavigator({
   ConversasList: {
-    screen: ConversasList
+    screen: ConversasList,
   },
   ContatoList: {
     screen: ContatoList
   },
   Config: {
     screen: Config
-  }
+  },
 });
 
 
