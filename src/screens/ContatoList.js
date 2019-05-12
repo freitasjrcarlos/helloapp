@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { getContactList } from '../actions/ChatActions';
+import { getContactList, createChat } from '../actions/ChatActions';
 import ContatoItem from '../components/ContatoList/ContatoItem';
 
 export class ContatoList extends Component {
@@ -17,12 +17,14 @@ export class ContatoList extends Component {
 
     this.props.getContactList(this.props.uid);
 
-    this.contatoclick = this.contatoClick.bind(this);
+    this.contatoClick = this.contatoClick.bind(this);
 
   }
 
   contatoClick(item){
-    alert("Clicou em "+item.name+"("+item.key+")");
+    
+    this.props.createChat(this.props.uid, item.key);
+
   }
 
   render() {
@@ -51,5 +53,5 @@ const mapStateToProps = (state) => {
   };
 }
 
-const ContatoListConnect = connect(mapStateToProps, { getContactList })(ContatoList);
+const ContatoListConnect = connect(mapStateToProps, { getContactList, createChat })(ContatoList);
 export default ContatoListConnect;
