@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getContactList } from '../actions/ChatActions';
+import ContatoItem from '../components/ContatoList/ContatoItem';
 
 export class ContatoList extends Component {
 
@@ -16,6 +17,12 @@ export class ContatoList extends Component {
 
     this.props.getContactList();
 
+    this.contatoclick = this.contatoClick.bind(this);
+
+  }
+
+  contatoClick(){
+
   }
 
   render() {
@@ -23,11 +30,7 @@ export class ContatoList extends Component {
       <View style={StyleSheet.container}>
         <FlatList
           data={this.props.contacts}
-          renderItem={({item})=> 
-          <View> 
-            <Text>-> {item.name}</Text>
-          </View>
-          }
+          renderItem={({item})=><ContatoItem data={item} onPress={this.contatoClick} />}          
         />
       </View>
     );
