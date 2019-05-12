@@ -10,18 +10,16 @@ import Config from './Config';
 const ConversasNavigator = createBottomTabNavigator({
   ConversasStack: {
     screen: ConversasStack,
-    navigationOption: { 
-      tabBarLabel:'Conversas'
+    navigationOptions: {
+      header: null,
     }
   },
   ContatoList: {
     screen: ContatoList,
-    navigationOption: { header: null }
   },
   Config: {
     screen: Config,
-    navigationOption: { header: null }
-  },
+  }
 });
 
 

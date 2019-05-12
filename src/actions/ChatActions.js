@@ -1,6 +1,29 @@
 import firebase from '../FirebaseCon';
 
 
+//Listando os chats
+export const getChatList = (userUid) => {
+  return (dispatch) => {
+    firebase.database().ref('users').child(userUid).child('chats').on('value', (snapshot)=> {
+      let chats = [];
+
+      snapshot.forEach((childItem)=> {
+        chats.push({
+          key: childItem.key,
+        });
+      });
+
+      dispatch({
+        type: 'setChatList',
+        payload: {
+          chats: chats
+        }
+      });
+
+    });
+  }
+}
+
 //Pegando lista de contatos
 export const getContactList = ( userUid ) => {
   return (dispatch) => {
@@ -60,7 +83,6 @@ export const createChat = (userUid1, userUid2) => {
         chatId:chatId
       }
     });
-
   }
 };
 

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { getChatList } from '../actions/ChatActions';
 
 export class ConversasList extends Component {
 
   static navigationOptions = {
-    title: '',
-    tabBarLabel: 'Conversas',
+    title: 'Conversas',
+    tarBarLabel: 'Conversas',
   }
   constructor(props){
     super(props);
     this.state = {};
+
+    this.props.getChatList(this.props.uid);
 
   }
   
@@ -23,10 +26,12 @@ export class ConversasList extends Component {
   render() {
     return(
       <View style={StyleSheet.container}>
-        <Text>Página Conversas{this.props.status} - {this.props.uid}</Text>
-        <Button title="Ir para Interna" onPress={()=> {
-          this.props.navigation.navigate('ConversaInterna');
-        }} />
+        <FlatList 
+          data={this.props.chats}
+          renderItem={({item})=> {
+            return <Text> ... </Text>
+          }}
+        />
       </View>
     );
   }
@@ -43,9 +48,10 @@ const mapStateToProps = (state) => {
   return {
     status: state.auth.status,
     uid: state.auth.uid,
-    activeChat:state.chat.activeChat
+    activeChat:state.chat.activeChat,
+    chats: state.chat.chats
   };
 }
 
-const ConversasListConnect = connect(mapStateToProps, {  })(ConversasList);
+const ConversasListConnect = connect(mapStateToProps, { getChatList })(ConversasList);
 export default ConversasListConnect;
