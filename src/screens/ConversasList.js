@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 export class ConversasList extends Component {
@@ -18,6 +18,9 @@ export class ConversasList extends Component {
     return(
       <View style={StyleSheet.container}>
         <Text>Página Conversas{this.props.status} - {this.props.uid}</Text>
+        <Button title="Ir para Interna" onPress={()=> {
+          this.props.navigation.navigate('ConversaInterna');
+        }} />
       </View>
     );
   }
