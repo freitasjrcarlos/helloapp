@@ -15,7 +15,7 @@ export class ContatoList extends Component {
     super(props);
     this.state = {};
 
-    this.props.getContactList();
+    this.props.getContactList(this.props.uid);
 
     this.contatoclick = this.contatoClick.bind(this);
 
