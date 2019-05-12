@@ -10,12 +10,15 @@ import Config from './Config';
 const ConversasNavigator = createBottomTabNavigator({
   ConversasList: {
     screen: ConversasList,
+    navigationOption: { header: null }
   },
   ContatoList: {
-    screen: ContatoList
+    screen: ContatoList,
+    navigationOption: { header: null }
   },
   Config: {
-    screen: Config
+    screen: Config,
+    navigationOption: { header: null }
   },
 });
 

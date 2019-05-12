@@ -16,19 +16,24 @@ let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const Navegador = createStackNavigator({
   Preload: {
-    screen: Preload
+    screen: Preload,
+    navigationOption: { header: null }
   },
   Home: {
-    screen: Home
+    screen: Home,
+    navigationOption: { header: null }
   },
   Conversas: {
-    screen: Conversas
+    screen: Conversas,
+    navigationOption: { header: null }
   },
   SignUp: {
-    screen: SignUp
+    screen: SignUp,
+    navigationOption: { header: null }
   },
   SignIn: {
-    screen: SignIn
+    screen: SignIn,
+    navigationOption: { header: null }
   }
 });
 
