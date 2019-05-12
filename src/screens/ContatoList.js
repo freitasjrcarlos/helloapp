@@ -21,8 +21,8 @@ export class ContatoList extends Component {
 
   }
 
-  contatoClick(){
-
+  contatoClick(item){
+    alert("Clicou em "+item.name+"("+item.key+")");
   }
 
   render() {
@@ -30,7 +30,7 @@ export class ContatoList extends Component {
       <View style={StyleSheet.container}>
         <FlatList
           data={this.props.contacts}
-          renderItem={({item})=><ContatoItem data={item} onPress={this.contatoClick} />}          
+          renderItem={({item})=><ContatoItem data={item} onPress={this.contatoClick} />}         
         />
       </View>
     );
