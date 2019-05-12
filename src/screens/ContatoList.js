@@ -21,11 +21,12 @@ export class ContatoList extends Component {
 
   }
 
+
   contatoClick(item){
     
     this.props.createChat(this.props.uid, item.key);
 
-    
+    this.props.navigation.navigate('ConversasStack');    
 
   }
 

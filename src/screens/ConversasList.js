@@ -13,6 +13,12 @@ export class ConversasList extends Component {
     this.state = {};
 
   }
+  
+  componentDidUpdate(){
+    if(this.props.activeChat != ''){
+      this.props.navigation.navigate('ConversaInterna');
+    }
+  }
 
   render() {
     return(
@@ -36,7 +42,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     status: state.auth.status,
-    uid: state.auth.uid
+    uid: state.auth.uid,
+    activeChat:state.chat.activeChat
   };
 }
 
