@@ -86,3 +86,13 @@ export const createChat = (userUid1, userUid2) => {
   }
 };
 
+//Ativando chat
+export const setActiveChat = (chatId) => {
+  return {
+    type: 'setActiveChat',
+    payload: {
+      chatId: chatId
+    }
+  };
+}
+
