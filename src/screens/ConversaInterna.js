@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveChat } from '../actions/ChatActions';
 
@@ -25,7 +25,16 @@ export class ConversaInterna extends Component {
   }
 
   componentDidMount(){
+    //Voltando via screen
     this.props.navigation.setParams({voltarFunction:this.voltar});
+
+    //Voltando via Hardware
+    BackHandler.addEventListener('hardwareBackPress', this.voltar);
+  }
+
+  //Saindo da tela
+  componentWillUnmount(){
+    BackHandler.removeEventListener('hardwareBackPress', this.voltar);
   }
 
   voltar() {
@@ -34,6 +43,9 @@ export class ConversaInterna extends Component {
 
     //Voltando
     this.props.navigation.goBack();
+
+    //Necessário de retorno para o componentWillUnmount
+    return true;
   }
 
   render() {
