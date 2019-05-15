@@ -1,7 +1,8 @@
 const initialState = {
   chats:[],
   contacts:[],
-  activeChat:''
+  activeChat:'',
+  activeChatTitle:''
 };
 
 const ChatReducer = (state = initialState, action) => {
@@ -15,7 +16,17 @@ const ChatReducer = (state = initialState, action) => {
   }
 
   if(action.type == 'setActiveChat'){
-    return { ...state, activeChat:action.payload.chatId};
+
+    let chatTitle = '';
+
+    //Procurando title e definindo na variavel chatTitle
+    for(let i in state.chats){
+      if(state.chats[i].key == action.payload.chatId){
+        chatTitle = state.chats[i].title;
+      }
+    }
+    
+    return { ...state, activeChat:action.payload.chatId, activeChatTitle:chatTitle};
   }
 
   return state;
