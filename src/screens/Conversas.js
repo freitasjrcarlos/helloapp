@@ -8,19 +8,45 @@ import Config from './Config';
 
 
 const ConversasNavigator = createBottomTabNavigator({
-  ConversasStack: {
-    screen: ConversasStack,
-    navigationOptions: {
-      header: null,
+  ConversasStack:{
+    screen:ConversasStack,
+    navigationOptions:{
+      tabBarLabel:"Conversas",
+      header:null,
     }
   },
-  ContatoList: {
-    screen: ContatoList,
+  ContatoList:{
+    screen:ContatoList,
+    navigationOptions:{
+      tabBarLabel:"Contatos",
+    }
   },
-  Config: {
-    screen: Config,
+  Config:{
+    screen:Config,
+    navigationOptions:{
+      tabBarLabel:"Configurações",
+    }
+  },
+},
+{
+  defaultNavigationOptions:{
+    animationsEnabled:false,
+    swipeEnabled:false,
   }
 });
+
+
+//Ocultar tabbar
+ConversasStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};
 
 
 const AppContainer = createAppContainer(ConversasNavigator);

@@ -7,6 +7,7 @@ export class ConversaInterna extends Component {
 
   static navigationOptions = ({navigation})=> ({
     title:navigation.state.params.title,
+    tabBarVisible: false,
     headerLeft:(
 
       <TouchableHighlight onPress={()=> {navigation.state.params.voltarFunction()}} underlayColor={false}>
