@@ -9,21 +9,25 @@ export default class MensagemItem extends Component {
     //Background e align
     let bgColor = '#eeeeee';
     let align = 'flex-start';
+    let textAlign = 'left';
 
     if(this.props.data.uid == this.props.me){
       bgColor = '#9999ff',
-      align = 'flex-end'
+      align = 'flex-end',
+      textAlign = 'right'
     }
 
     this.state = {
       bgColor: bgColor,
-      align:align
+      align: align,
+      textAlign: textAlign
     };
   }
   render(){
    return(
      <View style={[MensagemItemStyles.area, {alignSelf:this.state.align,backgroundColor:this.state.bgColor}]}>
-      <Text>{this.props.data.m}</Text>
+      <Text style={{textAlign:this.state.textAlign}}>{this.props.data.m}</Text>
+      <Text style={MensagemItemStyles.dateTxt}>{this.props.data.date}</Text>
      </View>
    );
   }
@@ -39,5 +43,9 @@ const MensagemItemStyles = StyleSheet.create({
     padding: 10,
     maxWidth: '80%',
     borderRadius: 5,
+  },
+  dateTxt: {
+    fontSize: 11,
+    textAlign: 'right',
   }
 });

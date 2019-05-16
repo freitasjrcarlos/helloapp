@@ -23,11 +23,11 @@ export class ConversaInterna extends Component {
     super(props);
     this.state = {
       testeMsg: [
-        {key:1, uid: 123, m: 'Oi, tudo bem?'},
-        {key:2, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m:'Tudo e vc?'},
-        {key:3, uid: 123, m:'Ok'},
-        {key:4, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'},
-        {key:5, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'Thururû'}
+        {key:1, date:'2019-05-05 05:05', uid: 123, m: 'Oi, tudo bem?'},
+        {key:2, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m:'Tudo e vc?'},
+        {key:3, date:'2019-05-05 05:05', uid: 123, m:'Ok'},
+        {key:4, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'},
+        {key:5, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'Thururû'}
       ]
     };
 
