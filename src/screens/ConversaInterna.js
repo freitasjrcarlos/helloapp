@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatList, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveChat } from '../actions/ChatActions';
+import MensagemItem from '../components/ConversaInterna/MensagemItem';
 
 export class ConversaInterna extends Component {
 
@@ -20,7 +21,14 @@ export class ConversaInterna extends Component {
 
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      testeMsg: [
+        {key:1, m: 'Oi, tudo bem?'},
+        {key:2, m:'Tudo e vc?'},
+        {key:3, m:'Ok'},
+        {key:4, m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'}
+      ]
+    };
 
     this.voltar = this.voltar.bind(this);
   }
@@ -55,8 +63,8 @@ export class ConversaInterna extends Component {
 
         <FlatList 
           style={styles.chatArea}
-          data={[]}
-          renderItem={()=><Text>...</Text>}
+          data={this.state.testeMsg}
+          renderItem={({item})=><MensagemItem data={item} />}
         />
 
         <View style={styles.sendArea}>
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
   },
   chatArea: {
     flex: 1,
-    backgroundColor: "#ff0000"
+    backgroundColor: "#cccccc"
   },
   sendArea: {
     height: 50,
