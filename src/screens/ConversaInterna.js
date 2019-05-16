@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatList, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveChat } from '../actions/ChatActions';
 
@@ -51,8 +51,20 @@ export class ConversaInterna extends Component {
 
   render() {
     return(
-      <View style={StyleSheet.container}>
-        <Text>Página Conversa interna{this.props.status} - {this.props.uid}</Text>
+      <View style={styles.container}>
+
+        <FlatList 
+          style={styles.chatArea}
+          data={[]}
+          renderItem={()=><Text>...</Text>}
+        />
+
+        <View style={styles.sendArea}>
+          <TextInput style={styles.sendInput} />
+          <TouchableHighlight style={styles.sendButton}>
+            <Image style={styles.sendImage} source={require('../assets/images/send-button.png')} />
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -61,7 +73,29 @@ export class ConversaInterna extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+  },
+  chatArea: {
+    flex: 1,
+    backgroundColor: "#ff0000"
+  },
+  sendArea: {
+    height: 50,
+    backgroundColor: "#eeeeee",
+    flexDirection: 'row',
+  },
+  sendInput: {
+    height: 50,
+    flex: 1,
+  },
+  sendButton: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sendImage: {
+    width: 40,
+    height: 40,
   }
 });
 
