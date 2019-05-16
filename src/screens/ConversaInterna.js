@@ -23,10 +23,11 @@ export class ConversaInterna extends Component {
     super(props);
     this.state = {
       testeMsg: [
-        {key:1, m: 'Oi, tudo bem?'},
-        {key:2, m:'Tudo e vc?'},
-        {key:3, m:'Ok'},
-        {key:4, m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'}
+        {key:1, uid: 123, m: 'Oi, tudo bem?'},
+        {key:2, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m:'Tudo e vc?'},
+        {key:3, uid: 123, m:'Ok'},
+        {key:4, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'},
+        {key:5, uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'Thururû'}
       ]
     };
 
@@ -64,7 +65,7 @@ export class ConversaInterna extends Component {
         <FlatList 
           style={styles.chatArea}
           data={this.state.testeMsg}
-          renderItem={({item})=><MensagemItem data={item} />}
+          renderItem={({item})=><MensagemItem data={item} me={this.props.uid} />}
         />
 
         <View style={styles.sendArea}>
