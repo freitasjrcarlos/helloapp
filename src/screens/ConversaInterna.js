@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatList, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveChat, sendMessage } from '../actions/ChatActions';
+import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem';
 
 export class ConversaInterna extends Component {
@@ -22,13 +22,6 @@ export class ConversaInterna extends Component {
   constructor(props){
     super(props);
     this.state = {
-      testeMsg: [
-        {key:1, date:'2019-05-05 05:05', uid: 123, m: 'Oi, tudo bem?'},
-        {key:2, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m:'Tudo e vc?'},
-        {key:3, date:'2019-05-05 05:05', uid: 123, m:'Ok'},
-        {key:4, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'},
-        {key:5, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'Thururû'}
-      ],
       inputText: ''
     };
 
@@ -42,11 +35,17 @@ export class ConversaInterna extends Component {
 
     //Voltando via Hardware
     BackHandler.addEventListener('hardwareBackPress', this.voltar);
+
+    //Carregando conversa
+    this.props.monitorChat(this.props.activeChat);
   }
 
   //Saindo da tela
   componentWillUnmount(){
     BackHandler.removeEventListener('hardwareBackPress', this.voltar);
+
+    //Saindo do Chat
+    //this.props.monitorChatOff(this.props.activeChat);
   }
 
   voltar() {
@@ -77,7 +76,7 @@ export class ConversaInterna extends Component {
 
         <FlatList 
           style={styles.chatArea}
-          data={this.state.testeMsg}
+          data={this.props.activeChatMessages}
           renderItem={({item})=><MensagemItem data={item} me={this.props.uid} />}
         />
 
@@ -127,9 +126,10 @@ const mapStateToProps = (state) => {
   return {
     status: state.auth.status,
     uid: state.auth.uid,
-    activeChat: state.chat.activeChat
+    activeChat: state.chat.activeChat,
+    activeChatMessages: state.chat.activeChatMessages
   };
 }
 
-const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage })(ConversaInterna);
+const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage, monitorChat, monitorChatOff })(ConversaInterna);
 export default ConversaInternaConnect;
