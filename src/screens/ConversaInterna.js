@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatList, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveChat } from '../actions/ChatActions';
+import { setActiveChat, sendMessage } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem';
 
 export class ConversaInterna extends Component {
@@ -68,7 +68,7 @@ export class ConversaInterna extends Component {
     state.inputText = '';
     this.setState(state);
 
-    alert(txt);
+    this.props.sendMessage(txt, this.props.uid, this.props.activeChat);
   }
 
   render() {
@@ -126,9 +126,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     status: state.auth.status,
-    uid: state.auth.uid
+    uid: state.auth.uid,
+    activeChat: state.chat.activeChat
   };
 }
 
-const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat })(ConversaInterna);
+const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage })(ConversaInterna);
 export default ConversaInternaConnect;

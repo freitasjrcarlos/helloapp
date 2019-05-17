@@ -113,3 +113,28 @@ export const setActiveChat = (chatId) => {
   };
 }
 
+// Enviando mensagem
+export const sendMessage = (txt, author, activeChat) => {
+  return (dispatch)=> {
+
+    let currentDate = '';
+    let cDate = new Date();
+
+    //Criando data
+    currentDate = cDate.getFullYear()+'-'+(cDate.getMonth()+1)+'-'+cDate.getDate();    
+    currentDate += ' ';
+    currentDate += cDate.getHours()+':'+cDate.getMinutes()+':'+cDate.getSeconds();
+
+    //Criando variável com o push
+    let msgId = firebase.database().ref('chats').child(activeChat).child('messages').push();
+
+    //Setando informações
+    msgId.set({
+      date: currentDate,
+      m: txt,
+      uid: author
+    });
+
+  };
+};
+
