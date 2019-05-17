@@ -28,10 +28,12 @@ export class ConversaInterna extends Component {
         {key:3, date:'2019-05-05 05:05', uid: 123, m:'Ok'},
         {key:4, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'fjbsjfbsbfs bfksbkfbskhbfhkd  bfkdhbfkbsbfskhbfhksd bdkbfkhsbfkh'},
         {key:5, date:'2019-05-05 05:05', uid: 'awnurzfayOTAWSbzDjZxKQmTLR23', m: 'Thururû'}
-      ]
+      ],
+      inputText: ''
     };
 
     this.voltar = this.voltar.bind(this);
+    this.sendMsg = this.sendMsg.bind(this);
   }
 
   componentDidMount(){
@@ -58,6 +60,17 @@ export class ConversaInterna extends Component {
     return true;
   }
 
+  sendMsg(){
+    let txt = this.state.inputText;
+
+    //Limpando state
+    let state = this.state;
+    state.inputText = '';
+    this.setState(state);
+
+    alert(txt);
+  }
+
   render() {
     return(
       <View style={styles.container}>
@@ -69,8 +82,10 @@ export class ConversaInterna extends Component {
         />
 
         <View style={styles.sendArea}>
-          <TextInput style={styles.sendInput} />
-          <TouchableHighlight style={styles.sendButton}>
+          <TextInput style={styles.sendInput} value={this.state.inputText} onChangeText={(inputText)=>{
+            this.setState({inputText})
+          }} />
+          <TouchableHighlight style={styles.sendButton} onPress={this.sendMsg}>
             <Image style={styles.sendImage} source={require('../assets/images/send-button.png')} />
           </TouchableHighlight>
         </View>
