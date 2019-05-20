@@ -20,14 +20,37 @@ export default class MensagemItem extends Component {
     this.state = {
       bgColor: bgColor,
       align: align,
-      textAlign: textAlign
+      textAlign: textAlign,
+      dateMsg:this.getFormatteDate(this.props.data.date)
     };
   }
+
+  //Formatando data e comparando com a data atual
+  getFormatteDate(originalDate){
+
+    let cDate = new Date();
+    let mDate = originalDate.split(' ');
+    let todayDate = cDate.getFullYear()+'-'+(cDate.getMonth()+1)+'-'+cDate.getDate();
+
+    let newDate = mDate[1].split(':');
+    newDate = ((newDate[0]<10)?'0'+newDate[0]:newDate[0])+':'+((newDate[1]<10)?'0'+newDate[1]:newDate[1]);
+
+    if(todayDate != mDate[0]){
+      let newDateDays = mDate[0].split('-');
+
+      newDate = newDateDays[2]+'/'+newDateDays[1]+'/'+newDateDays[0]+' '+newDate;
+    }
+
+    return newDate;
+
+
+  }
+
   render(){
    return(
      <View style={[MensagemItemStyles.area, {alignSelf:this.state.align,backgroundColor:this.state.bgColor}]}>
       <Text style={{textAlign:this.state.textAlign}}>{this.props.data.m}</Text>
-      <Text style={MensagemItemStyles.dateTxt}>{this.props.data.date}</Text>
+      <Text style={MensagemItemStyles.dateTxt}>{this.state.dateMsg}</Text>
      </View>
    );
   }
