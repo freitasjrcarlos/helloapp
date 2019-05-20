@@ -44,11 +44,12 @@ export class ConversaInterna extends Component {
   componentWillUnmount(){
     BackHandler.removeEventListener('hardwareBackPress', this.voltar);
 
-    //Saindo do Chat
-    //this.props.monitorChatOff(this.props.activeChat);
   }
 
   voltar() {
+    //Saindo do Chat
+    this.props.monitorChatOff(this.props.activeChat);
+    
     //Setando String vazia
     this.props.setActiveChat('');
 
@@ -75,7 +76,7 @@ export class ConversaInterna extends Component {
       <View style={styles.container}>
 
         <FlatList 
-        
+
           ref={(ref)=>{
             this.chatArea = ref
           }}
