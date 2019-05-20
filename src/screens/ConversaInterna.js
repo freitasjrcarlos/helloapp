@@ -75,6 +75,17 @@ export class ConversaInterna extends Component {
       <View style={styles.container}>
 
         <FlatList 
+        
+          ref={(ref)=>{
+            this.chatArea = ref
+          }}
+          onContentSizeChange={()=>{
+            this.chatArea.scrollToEnd({animated:true})
+          }}
+          onLayout={()=>{
+            this.chatArea.scrollToEnd({animated:true})
+          }}
+
           style={styles.chatArea}
           data={this.props.activeChatMessages}
           renderItem={({item})=><MensagemItem data={item} me={this.props.uid} />}
