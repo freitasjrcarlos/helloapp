@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TextInput, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import LoadingItem from '../components/LoadingItem';
 import { checkLogin, changeName, changeEmail, changePassword, signup } from '../actions/AuthActions';
 
 export class SignUp extends Component {
@@ -10,7 +11,9 @@ export class SignUp extends Component {
   }
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      loading: false
+    };
   }
 
  //Direcionar para screen Conversas
@@ -35,8 +38,13 @@ export class SignUp extends Component {
         <TextInput style={styles.input} value={this.props.password} onChangeText={this.props.changePassword} secureTextEntry={true} />
 
         <Button title="Cadastrar" onPress={()=> {
-          this.props.signup(this.props.name, this.props.email, this.props.password);
+          this.setState({loading:true});
+          this.props.signup(this.props.name, this.props.email, this.props.password, ()=> {
+            this.setState({loading:false});
+          });
         }} />
+
+        <LoadingItem visible={this.state.loading} />
       </View>
     );
   }

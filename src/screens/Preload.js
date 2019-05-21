@@ -55,7 +55,8 @@ export class Preload extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>Carregando...{this.props.status}</Text>
+        <Text style={styles.appName}> HelloApp </Text>
+        <Text>Carregando...</Text>
       </View>
     );
   }
@@ -64,7 +65,12 @@ export class Preload extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  appName: {
+    fontSize: 30,
+    marginBottom: 20
   }
 });
 
