@@ -29,7 +29,7 @@ export const getChatList = (userUid, callback) => {
 }
 
 //Pegando lista de contatos
-export const getContactList = ( userUid ) => {
+export const getContactList = ( userUid, callback ) => {
   return (dispatch) => {
     firebase.database().ref('users').orderByChild('name').once('value').then((snapshot)=>{
       
@@ -44,6 +44,9 @@ export const getContactList = ( userUid ) => {
        }
 
       });
+
+      //Callback
+      callback();
 
       dispatch({
         type: 'setContactList',
