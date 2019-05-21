@@ -2,7 +2,7 @@ import firebase from '../FirebaseCon';
 
 
 //Listando os chats
-export const getChatList = (userUid) => {
+export const getChatList = (userUid, callback) => {
   return (dispatch) => {
     firebase.database().ref('users').child(userUid).child('chats').on('value', (snapshot)=> {
       let chats = [];
@@ -13,6 +13,9 @@ export const getChatList = (userUid) => {
           title: childItem.val().title
         });
       });
+
+      //Callback
+      callback();
 
       dispatch({
         type: 'setChatList',
