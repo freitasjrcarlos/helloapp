@@ -49,7 +49,13 @@ export default class MensagemItem extends Component {
   render(){
    return(
      <View style={[MensagemItemStyles.area, {alignSelf:this.state.align,backgroundColor:this.state.bgColor}]}>
-      <Text style={{textAlign:this.state.textAlign}}>{this.props.data.m}</Text>
+       {  this.props.data.msgType == 'text' &&
+          <Text style={{textAlign:this.state.textAlign}}>{this.props.data.m}</Text>
+        }
+      { this.props.data.msgType == 'image' && 
+        <Text>Imagem</Text> 
+      }
+
       <Text style={MensagemItemStyles.dateTxt}>{this.state.dateMsg}</Text>
      </View>
    );
