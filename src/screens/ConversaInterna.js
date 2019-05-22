@@ -27,6 +27,7 @@ export class ConversaInterna extends Component {
 
     this.voltar = this.voltar.bind(this);
     this.sendMsg = this.sendMsg.bind(this);
+    this.chooseImage = this.chooseImage.bind(this);
   }
 
   componentDidMount(){
@@ -71,6 +72,10 @@ export class ConversaInterna extends Component {
     this.props.sendMessage('text', txt, this.props.uid, this.props.activeChat);
   }
 
+  chooseImage(){
+    alert("teste Adicionar Imagem");
+  }
+
   render() {
     //Variáveis para o KeyboardAvoidingView
     let areaBehavior = Platform.select({ios:'padding', android:null});
@@ -97,6 +102,11 @@ export class ConversaInterna extends Component {
         />
 
         <View style={styles.sendArea}>
+
+          <TouchableHighlight style={styles.imageButton} onPress={this.chooseImage}>
+            <Image style={styles.imageBtnImage} source={require('../assets/images/image-button.png')} />
+          </TouchableHighlight>
+
           <TextInput style={styles.sendInput} value={this.state.inputText} onChangeText={(inputText)=>{
             this.setState({inputText})
           }} />
@@ -135,6 +145,16 @@ const styles = StyleSheet.create({
   sendImage: {
     width: 40,
     height: 40,
+  },
+  imageButton: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imageBtnImage: {
+    width: 30,
+    height: 30,
   }
 });
 
