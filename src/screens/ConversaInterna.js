@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem';
 import ImagePicker from 'react-native-image-picker';
+import RNFetchBlob from 'react-native-fetch-blob';
+
+//Variáveis globais para FetchBlob
+window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
+window.Blob = RNFetchBlob.polyfill.Blob;
 
 export class ConversaInterna extends Component {
 
@@ -79,11 +84,17 @@ export class ConversaInterna extends Component {
     
     ImagePicker.showImagePicker(null, (r)=> {
       if(r.uri){
-        let img = {uri:r.uri};
+        
+        let uri = r.uri.replace('file://', '');
 
-        let state = this.state;
-        state.imageTmp = img;
-        this.setState(state);
+        RNFetchBlob.fs.readFile(uri, 'base64')
+          .then((data)=>{
+            return RNFetchBlob.polyfill.Blob.build(data, {type:'image/jpeg;BASE64'})
+            .then((blob)=>{
+              
+            });
+          });
+
       }
     });
 
