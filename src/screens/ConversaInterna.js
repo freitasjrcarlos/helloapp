@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatLis
 import { connect } from 'react-redux';
 import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem';
+import ImagePicker from 'react-native-image-picker';
 
 export class ConversaInterna extends Component {
 
@@ -22,7 +23,8 @@ export class ConversaInterna extends Component {
   constructor(props){
     super(props);
     this.state = {
-      inputText: ''
+      inputText: '',
+      imageTmp: null
     };
 
     this.voltar = this.voltar.bind(this);
@@ -72,8 +74,19 @@ export class ConversaInterna extends Component {
     this.props.sendMessage('text', txt, this.props.uid, this.props.activeChat);
   }
 
+  //Pegando Imagem
   chooseImage(){
-    alert("teste Adicionar Imagem");
+    
+    ImagePicker.showImagePicker(null, (r)=> {
+      if(r.uri){
+        let img = {uri:r.uri};
+
+        let state = this.state;
+        state.imageTmp = img;
+        this.setState(state);
+      }
+    });
+
   }
 
   render() {
@@ -100,6 +113,10 @@ export class ConversaInterna extends Component {
           data={this.props.activeChatMessages}
           renderItem={({item})=><MensagemItem data={item} me={this.props.uid} />}
         />
+
+        <View style={styles.imageTmp}>
+          <Image source={this.state.imageTmp} style={styles.imageTmpImage} />
+        </View>
 
         <View style={styles.sendArea}>
 
@@ -155,6 +172,14 @@ const styles = StyleSheet.create({
   imageBtnImage: {
     width: 30,
     height: 30,
+  },
+  imageTmp: {
+    height: 100,
+    backgroundColor: '#dddddd',
+  },
+  imageTmpImage: {
+    width: 100,
+    height: 100,
   }
 });
 
