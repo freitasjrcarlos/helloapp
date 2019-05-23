@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Image, BackHandler, FlatList, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveChat, sendMessage, monitorChat, monitorChatOff } from '../actions/ChatActions';
+import { setActiveChat, sendMessage, monitorChat, monitorChatOff, sendImage } from '../actions/ChatActions';
 import MensagemItem from '../components/ConversaInterna/MensagemItem';
 import ImagePicker from 'react-native-image-picker';
 import RNFetchBlob from 'react-native-fetch-blob';
@@ -91,10 +91,13 @@ export class ConversaInterna extends Component {
           .then((data)=>{
             return RNFetchBlob.polyfill.Blob.build(data, {type:'image/jpeg;BASE64'})
             .then((blob)=>{
-              
+              this.props.sendImage(blob, (imgName)=> {
+                this.props.sendMessage('image', imgName, this.props.uid, this.props.activeChat);
+              });
+
             });
           });
-
+ 
       }
     });
 
@@ -203,5 +206,5 @@ const mapStateToProps = (state) => {
   };
 }
 
-const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage, monitorChat, monitorChatOff })(ConversaInterna);
+const ConversaInternaConnect = connect(mapStateToProps, { setActiveChat, sendMessage, monitorChat, monitorChatOff, sendImage })(ConversaInterna);
 export default ConversaInternaConnect;
