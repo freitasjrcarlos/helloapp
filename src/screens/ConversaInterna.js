@@ -181,7 +181,7 @@ export class ConversaInterna extends Component {
           <TextInput style={styles.sendInput} value={this.state.inputText} onChangeText={(inputText)=>{
             this.setState({inputText})
           }} />
-          <TouchableHighlight style={styles.sendButton} onPress={this.sendMsg}>
+          <TouchableHighlight disabled={this.state.inputText == '' ? true : false} style={styles.sendButton} onPress={this.sendMsg}>
             <Image style={styles.sendImage} source={require('../assets/images/send-button.png')} />
           </TouchableHighlight>
         </View>
