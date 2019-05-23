@@ -1,6 +1,6 @@
 # HelloApp
 
-Um aplicativo criado para comunicação dos colaboladores de uma empresa 🏢.
+Um aplicativo criado para comunicação dos colaboladores de uma empresa 🏢
 Usei React-Native e Firebase.
 
 **Clonando o repositório**
@@ -31,5 +31,4 @@ react-native run android
 react-native run ios
 ```
 
-Bora lá 😎 
 Feedbacks são super bem vindos ❤
