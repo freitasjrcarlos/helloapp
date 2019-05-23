@@ -1,7 +1,8 @@
 import firebase from 'firebase';
 
 let config = {
-  //Informações aqui
+  //Informações aqui 
+  //
 };
 firebase.initializeApp(config);
 
