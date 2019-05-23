@@ -29,7 +29,7 @@ export class ConversaInterna extends Component {
     super(props);
     this.state = {
       inputText: '',
-      imageTmp: null
+      pct:0
     };
 
     this.voltar = this.voltar.bind(this);
@@ -91,8 +91,25 @@ export class ConversaInterna extends Component {
           .then((data)=>{
             return RNFetchBlob.polyfill.Blob.build(data, {type:'image/jpeg;BASE64'})
             .then((blob)=>{
-              this.props.sendImage(blob, (imgName)=> {
-                this.props.sendMessage('image', imgName, this.props.uid, this.props.activeChat);
+              this.props.sendImage(
+                blob,
+
+                (snapshot)=>{
+
+                  let pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+                  let state = this.state;
+                  state.pct = pct;
+                  this.setState(state);
+
+                },
+
+                (imgName)=> {
+                  let state = this.state;
+                  state.pct = 0;
+                  this.setState(state);
+
+                  this.props.sendMessage('image', imgName, this.props.uid, this.props.activeChat);
               });
 
             });
@@ -128,9 +145,12 @@ export class ConversaInterna extends Component {
           renderItem={({item})=><MensagemItem data={item} me={this.props.uid} />}
         />
 
-        <View style={styles.imageTmp}>
-          <Image source={this.state.imageTmp} style={styles.imageTmpImage} />
-        </View>
+        {this.state.pct > 0 && 
+          <View style={styles.imageTmp}>
+            <View style={[{width:this.state.pct+'%'}, styles.imageTmpBar]}>
+            </View>
+          </View>
+        }
 
         <View style={styles.sendArea}>
 
@@ -188,12 +208,11 @@ const styles = StyleSheet.create({
     height: 30,
   },
   imageTmp: {
-    height: 100,
-    backgroundColor: '#dddddd',
+    height: 10,
   },
-  imageTmpImage: {
-    width: 100,
-    height: 100,
+  imageTmpBar: {
+    height: 10,
+    backgroundColor: '#ff0000',
   }
 });
 

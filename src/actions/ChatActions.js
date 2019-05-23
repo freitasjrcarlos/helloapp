@@ -119,7 +119,7 @@ export const setActiveChat = (chatId) => {
 }
 
 //Enviando mensagem
-export const sendImage = (blob, callback) => {
+export const sendImage = (blob, progressCallback, sucessCallback) => {
   return (dispatch) => {
 
     let tmpKey = firebase.database().ref('chats').push().key;
@@ -127,13 +127,16 @@ export const sendImage = (blob, callback) => {
     let fbimage = firebase.storage().ref().child('images').child(tmpKey);
 
     fbimage.put(blob, {contentType:'image/jpeg'})
-      .then(()=>{
-        callback(tmpKey);
+    .on('state_changed', 
+    progressCallback,
+    (error)=>{
+      alert(error.code);
+    },
+    ()=>{
 
-      })
-      .catch((error)=>{
-        alert(error.code);
-      });
+      sucessCallback(tmpKey);
+
+    })
 
   }
 }
