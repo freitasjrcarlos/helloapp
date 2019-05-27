@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TextInput, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, Keyboard, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import LoadingItem from '../components/LoadingItem';
 import { checkLogin, changeName, changeEmail, changePassword, signup } from '../actions/AuthActions';
@@ -37,12 +37,14 @@ export class SignUp extends Component {
         <Text style={styles.label}>Senha:</Text>
         <TextInput style={styles.input} value={this.props.password} onChangeText={this.props.changePassword} secureTextEntry={true} />
 
-        <Button title="Cadastrar" onPress={()=> {
+        <TouchableHighlight style={styles.btn} onPress={()=> {
           this.setState({loading:true});
           this.props.signup(this.props.name, this.props.email, this.props.password, ()=> {
             this.setState({loading:false});
           });
-        }} />
+        }}  >
+          <Text style={styles.btnTxt}> Cadastrar </Text>
+        </TouchableHighlight>
 
         <LoadingItem visible={this.state.loading} />
       </View>
@@ -53,17 +55,33 @@ export class SignUp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#993699',
   },
   label: {
     margin: 10,
+    color: '#ffffff'
   },
   input: {
     width: '80%',
     height: 40,
-    backgroundColor: '#dddddd',
+    backgroundColor: '#ffffff',
+    borderRadius: 2,
+  },  
+  btn: {
+    width: 100,
+    height: 40,
+    backgroundColor: '#ffffff',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 2,
+    marginTop: 30,
+  },
+  btnTxt: {
+    color: '#993399',
+    fontSize: 15,
   }
 });
 

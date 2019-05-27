@@ -56,7 +56,7 @@ export class Preload extends Component {
     return(
       <View style={styles.container}>
         <Text style={styles.appName}> HelloApp </Text>
-        <Text>Carregando...</Text>
+        <Text style={styles.preTxt}>Carregando...</Text>
       </View>
     );
   }
@@ -66,11 +66,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#993699'
   },
   appName: {
     fontSize: 30,
-    marginBottom: 20
+    marginBottom: 20,
+    color: '#ffffff',
+  },
+  preTxt: {
+    color: '#ffffff'
   }
 });
 
