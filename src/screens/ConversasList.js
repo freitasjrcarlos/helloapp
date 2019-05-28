@@ -35,7 +35,7 @@ export class ConversasList extends Component {
 
   render() {
     return(
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         {this.state.loading && <ActivityIndicator size="large" />}
         <FlatList 
           data={this.props.chats}
@@ -49,7 +49,7 @@ export class ConversasList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    backgroundColor: '#993699',
   }
 });
 

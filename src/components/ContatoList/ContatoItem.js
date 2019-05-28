@@ -16,7 +16,7 @@ export default class ContatoItem extends Component {
   render(){
    return(
      <TouchableHighlight underlayColor="#dddddd" style={ContatoItemStyles.buttonArea} onPress={this.onClick}>
-      <Text>{this.props.data.name}</Text>
+      <Text style={ContatoItemStyles.txt}>{this.props.data.name}</Text>
      </TouchableHighlight>
    );
   }
@@ -30,6 +30,9 @@ const ContatoItemStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc'
+    borderBottomColor: '#ffffff'
+  },
+  txt: {
+    color: '#ffffff'
   }
 });

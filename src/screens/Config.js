@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { signOut } from '../actions/AuthActions';
@@ -42,8 +42,10 @@ export class Config extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>Página Config</Text>
-        <Button title="Sair" onPress={this.sair} />
+        <Text style={styles.txt}>HelloApp V.1.0</Text>
+        <TouchableHighlight style={styles.btn} onPress={this.sair}>
+          <Text style={styles.btnTxt}> Sair </Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -52,7 +54,27 @@ export class Config extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    backgroundColor: '#993699',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  txt: {
+    fontSize: 20,
+    color: '#ffffff',
+  },
+  btn: {
+    width: 100,
+    height: 40,
+    backgroundColor: '#ffffff',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 2,
+    marginTop: 30,
+  },
+  btnTxt: {
+    color: '#993399',
+    fontSize: 15,
   }
 });
 

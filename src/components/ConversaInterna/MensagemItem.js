@@ -12,7 +12,7 @@ export default class MensagemItem extends Component {
     let textAlign = 'left';
 
     if(this.props.data.uid == this.props.me){
-      bgColor = '#9999ff',
+      bgColor = '#cf9bcc',
       align = 'flex-end',
       textAlign = 'right'
     }
@@ -56,7 +56,7 @@ export default class MensagemItem extends Component {
    return(
      <View style={[MensagemItemStyles.area, {alignSelf:this.state.align,backgroundColor:this.state.bgColor}]}>
        {  this.props.data.msgType == 'text' &&
-          <Text style={{textAlign:this.state.textAlign}}>{this.props.data.m}</Text>
+          <Text style={[MensagemItemStyles.txtMensagem, {textAlign:this.state.textAlign}]}>{this.props.data.m}</Text>
         }
       { this.props.data.msgType == 'image' && 
         <TouchableHighlight onPress={this.imageClicked}>
@@ -88,5 +88,8 @@ const MensagemItemStyles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+  },
+  txtMensagem: {
+    color: '#000000'
   }
 });

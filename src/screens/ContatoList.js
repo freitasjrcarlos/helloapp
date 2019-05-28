@@ -47,7 +47,7 @@ export class ContatoList extends Component {
 
   render() {
     return(
-      <View style={StyleSheet.container}>
+      <View style={styles.container}>
         {this.state.loading && <ActivityIndicator size="large" />}
 
         <FlatList
@@ -62,7 +62,7 @@ export class ContatoList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10
+    backgroundColor: '#993699'
   }
 });
 
