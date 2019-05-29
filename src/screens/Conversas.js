@@ -13,7 +13,7 @@ const ConversasNavigator = createBottomTabNavigator({
     navigationOptions:{
       tabBarLabel:"Conversas",
       header:null,
-    }
+    },
   },
   ContatoList:{
     screen:ContatoList,
@@ -32,7 +32,15 @@ const ConversasNavigator = createBottomTabNavigator({
   defaultNavigationOptions:{
     animationsEnabled:false,
     swipeEnabled:false,
+  },
+  tabBarOptions:{
+    activeTintColor: '#993699',
+    labelStyle: {
+      fontSize: 12,
+      padding: 10
+    }
   }
+  
 });
 
 
